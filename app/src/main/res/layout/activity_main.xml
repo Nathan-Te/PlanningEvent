@@ -7,12 +7,68 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="55dp" />
+
+    <ImageView
+        android:id="@+id/welcomeImage"
+        android:layout_width="322dp"
+        android:layout_height="296dp"
+        android:layout_marginTop="-30dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/clipart_welcome" />
+
+    <TextView
+        android:id="@+id/welcomeMessage1"
+        android:layout_width="208dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="8dp"
+        android:text="Organize"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeImage" />
+
+    <TextView
+        android:id="@+id/welcomeMessage2"
+        android:layout_width="168dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="-25dp"
+        android:text="events"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMessage1" />
+
+    <Button
+        android:id="@+id/button"
+        style="@android:style/Widget.Material.Light.Button.Inset"
+        android:layout_width="221dp"
+        android:layout_height="39dp"
+        android:background="@drawable/button_gradient"
+        android:text="Button"
+        tools:layout_editor_absoluteX="94dp"
+        tools:layout_editor_absoluteY="608dp" />
+
+    <TextView
+        android:id="@+id/welcomeTerms"
+        android:layout_width="240dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="32dp"
+        android:text="By Continuing you agree to the Terms and Conditions"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="85dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
