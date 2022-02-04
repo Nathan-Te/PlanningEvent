@@ -55,10 +55,24 @@
         style="@android:style/Widget.Material.Light.Button.Inset"
         android:layout_width="221dp"
         android:layout_height="39dp"
+        android:layout_marginBottom="35dp"
         android:background="@drawable/button_gradient"
         android:text="Button"
-        tools:layout_editor_absoluteX="94dp"
-        tools:layout_editor_absoluteY="608dp" />
+        app:layout_constraintBottom_toTopOf="@+id/welcomeTerms"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@android:style/Widget.Material.Light.Button.Inset"
+        android:layout_width="221dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="76dp"
+        android:background="@drawable/button_gradient"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/welcomeTerms"
@@ -69,6 +83,7 @@
         android:textColor="#FFFFFF"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="85dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
