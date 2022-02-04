@@ -2,25 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Welcome_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="55dp" />
+    tools:context=".MainActivity"
+    android:background="#ffffff">
 
     <ImageView
         android:id="@+id/welcomeImage"
         android:layout_width="322dp"
         android:layout_height="296dp"
-        android:layout_marginTop="-30dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.494"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/clipart_welcome" />
@@ -29,11 +23,12 @@
         android:id="@+id/welcomeMessage1"
         android:layout_width="208dp"
         android:layout_height="76dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginEnd="102dp"
         android:text="Organize"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeImage" />
 
@@ -41,10 +36,10 @@
         android:id="@+id/welcomeMessage2"
         android:layout_width="168dp"
         android:layout_height="74dp"
-        android:layout_marginStart="22dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="-25dp"
         android:text="events"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,36 +50,44 @@
         style="@android:style/Widget.Material.Light.Button.Inset"
         android:layout_width="300dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/button_gradient"
         android:text="Log in"
+        android:textAllCaps="false"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/welcomeTerms"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textAllCaps="false" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
         style="@android:style/Widget.Material.Light.Button.Inset"
         android:layout_width="300dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/button_gradient"
         android:text="Sign in with Email"
+        android:textAllCaps="false"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textAllCaps="false" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/welcomeTerms"
         android:layout_width="240dp"
         android:layout_height="17dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="48dp"
         android:text="By Continuing you agree to the Terms and Conditions"
         android:textColor="#808080"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

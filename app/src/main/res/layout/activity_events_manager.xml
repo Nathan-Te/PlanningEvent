@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF9F7"
-    android:backgroundTint="@color/black"
-    android:clickable="true"
-    tools:context=".EventsManager">
+    tools:context=".EventsManager"
+    android:background="#ffffff">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton4"
