@@ -3,6 +3,7 @@ package com.example.planningevent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.Button;
 import android.os.Bundle;
 import android.view.View;

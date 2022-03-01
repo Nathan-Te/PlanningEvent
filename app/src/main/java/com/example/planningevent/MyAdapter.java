@@ -10,12 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import com.example.planningevent.Evenement;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     Context c;
-    List<String> mdata;
+    List<Evenement> mdata;
 
-    public MyAdapter(Context c, List<String> mdata) {
+    public MyAdapter(Context c, List<Evenement> mdata) {
         this.c = c;
         this.mdata = mdata;
     }
@@ -29,7 +30,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.txtName.setText(mdata.get(position));
+        holder.txtName.setText(mdata.get(position).getName());
     }
 
     @Override

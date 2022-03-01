@@ -11,18 +11,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.planningevent.Evenement;
 
 public class EventsManager extends Activity {
     // String items[] = new String[]{"Wedding Florian and Mayara","Party","Birthday Nathan"};
     //String myDataset[] = new String[]{"Wedding Florian and Mayara","Party","Birthday Nathan"};
 
     RecyclerView rv;
-    List<String> name = new ArrayList<>();
-    MyAdapter adapter = new MyAdapter(this,name);
+    List<Evenement> name = new ArrayList<>();
+    MyAdapter adapter;
+
+    DatabaseHandler db = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +45,20 @@ public class EventsManager extends Activity {
 
         rv = findViewById(R.id.rv);
         // Data
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-        name.add("Birthday");
-        name.add("Party");
-        name.add("Wedding");
-
+        db.addEvent(new Evenement("Birthday 1"));
+        db.addEvent(new Evenement("Birthday 2"));
+        db.addEvent(new Evenement("Birthday 3"));
+        db.addEvent(new Evenement("Birthday 4"));
+        name = db.getAllEvents();
+        /*
+        name.add(new Evenement("Birthday"));
+        name.add(new Evenement("Wedding"));
+        name.add(new Evenement("Party"));
+        name.add(new Evenement("Help"));
+        name.add(new Evenement("Test"));
+        */
         rv.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyAdapter(this,name);
         rv.setAdapter(adapter);
         rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.VERTICAL));
 
@@ -77,10 +72,20 @@ public class EventsManager extends Activity {
                 startActivity(MainActivityIntent);
             }
         });
+
+        // Event Adder
+        FloatingActionButton btnAddEvent = (FloatingActionButton) findViewById(R.id.btnAddEvent);
+        btnAddEvent.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent EventAdderIntent = new Intent(EventsManager.this, EventAdder.class);
+                startActivity(EventAdderIntent);
+            }
+        });
     }
 
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -88,8 +93,12 @@ public class EventsManager extends Activity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            name.remove(viewHolder.getAdapterPosition());
+            Evenement event_to_delete = adapter.mdata.get(viewHolder.getAdapterPosition());
+            Log.e("To Delete : ", event_to_delete.toString());
+            db.deleteEvent(event_to_delete);
+            name.remove(event_to_delete);
             adapter.notifyDataSetChanged();
         }
+
     };
 }
