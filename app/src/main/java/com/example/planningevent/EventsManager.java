@@ -66,6 +66,7 @@ public class EventsManager extends Activity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
         rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.VERTICAL));
+
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rv);
 
         // Back home
@@ -77,6 +78,7 @@ public class EventsManager extends Activity {
             }
         });
     }
+
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
         @Override

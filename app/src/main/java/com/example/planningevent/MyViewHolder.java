@@ -1,5 +1,7 @@
 package com.example.planningevent;
 
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,4 +15,5 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         txtName = itemView.findViewById(R.id.txt_name);
     }
+
 }
