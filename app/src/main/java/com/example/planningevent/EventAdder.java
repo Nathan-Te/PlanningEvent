@@ -118,7 +118,7 @@ public class EventAdder extends AppCompatActivity {
                 // Initialize Validation style
                 // validation = new AwesomeValidation(ValidationStyle.BASIC);
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRef = database.getReference("users");
                 Evenement eventPerso = new Evenement("Nathan");
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
