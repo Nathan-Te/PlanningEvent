@@ -81,8 +81,8 @@ public class EventsManager extends Activity {
                 startActivity(EventAdderIntent);
             }
         });
-    }
 
+    }
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
 

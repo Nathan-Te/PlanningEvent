@@ -15,5 +15,4 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         txtName = itemView.findViewById(R.id.txt_name);
     }
-
 }

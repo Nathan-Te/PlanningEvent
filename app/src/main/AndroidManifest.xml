@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanningEvent">
         <activity
+            android:name=".DataPickerExample"
+            android:exported="false" />
+        <activity
             android:name=".EventAdder"
             android:exported="false" />
         <activity
