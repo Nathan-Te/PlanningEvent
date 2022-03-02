@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeLayout"
+    android:orientation="vertical"
+    android:background="#FFF"
+    app:clickToClose="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/linear_sag"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_search_white_24dp"
+            android:background="@color/yellow"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:id="@+id/ara"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_star_white_24dp"
+            android:background="@color/green"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:id="@+id/star"/>
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_delete_white_24dp"
+            android:background="@color/red"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:id="@+id/delete2"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="My name event"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:id="@+id/eventName"/>
+
+
+</com.daimajia.swipe.SwipeLayout>

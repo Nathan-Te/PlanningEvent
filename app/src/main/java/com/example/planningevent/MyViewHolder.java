@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
-    TextView txtName;
+    TextView eventName;
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
-        txtName = itemView.findViewById(R.id.txt_name);
+        eventName = itemView.findViewById(R.id.eventName);
     }
 }

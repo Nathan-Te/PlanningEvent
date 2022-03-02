@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -32,14 +33,20 @@ public class EventAdder extends AppCompatActivity {
     EditText dateTo;
     EditText editText;
     TextView textView1, textView2;
-
+    TextInputEditText eventName;
     DatePickerDialog.OnDateSetListener setListenerDateFrom, setListenerDateTo;
+    // AwesomeValidation validation;
+
+    Evenement event;
+    DatabaseHandler db = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_adder);
+
+
 
         /*
             CALENDARS
@@ -106,8 +113,16 @@ public class EventAdder extends AppCompatActivity {
         FloatingActionButton btnAddEvent2 = (FloatingActionButton) findViewById(R.id.btnAddEvent2);
         btnAddEvent2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                TextInputEditText inputEvent = (TextInputEditText) findViewById(R.id.inputEventName);
-                // CODE POUR INSERER DANS BDD NOUVEL EVENT
+                // Initialize Validation style
+                // validation = new AwesomeValidation(ValidationStyle.BASIC);
+
+                eventName = findViewById(R.id.inputEventName);
+                // validation.addValidation(EventAdder.this,R.id.inputEventName,RegexTemplate.NOT_EMPTY,R.string.invalid_event_name);
+
+                // Add the new event to the database
+                event = new Evenement(String.valueOf(eventName.getText()));
+                db.addEvent(event);
+
                 Intent EventsManagerIntent = new Intent(EventAdder.this, EventsManager.class);
                 startActivity(EventsManagerIntent);
             }

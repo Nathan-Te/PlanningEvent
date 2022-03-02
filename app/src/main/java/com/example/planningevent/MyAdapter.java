@@ -24,17 +24,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(c).inflate(R.layout.list_item, parent, false);
+         // View view = LayoutInflater.from(c).inflate(R.layout.list_item, parent, false);
+         View view = LayoutInflater.from(c).inflate(R.layout.activity_test_swipe, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.txtName.setText(mdata.get(position).getName());
+        holder.eventName.setText(mdata.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
         return mdata.size();
     }
+
 }
