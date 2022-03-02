@@ -21,6 +21,8 @@ import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -116,12 +118,13 @@ public class EventAdder extends AppCompatActivity {
                 // Initialize Validation style
                 // validation = new AwesomeValidation(ValidationStyle.BASIC);
 
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("users");
+                Evenement eventPerso = new Evenement("Nathan");
+                myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
+
                 eventName = findViewById(R.id.inputEventName);
                 // validation.addValidation(EventAdder.this,R.id.inputEventName,RegexTemplate.NOT_EMPTY,R.string.invalid_event_name);
-
-                // Add the new event to the database
-                event = new Evenement(String.valueOf(eventName.getText()));
-                db.addEvent(event);
 
                 Intent EventsManagerIntent = new Intent(EventAdder.this, EventsManager.class);
                 startActivity(EventsManagerIntent);

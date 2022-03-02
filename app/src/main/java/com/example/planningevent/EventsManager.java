@@ -38,6 +38,7 @@ public class EventsManager extends Activity {
         rv = findViewById(R.id.rv);
         // Data
         myEvents = db.getAllEvents();
+        myEvents.add(new Evenement("Blabla"));
 
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(this,myEvents);
