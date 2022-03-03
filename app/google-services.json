@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "263746572038",
+    "firebase_url": "https://planning-event-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "planning-event",
+    "storage_bucket": "planning-event.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263746572038:android:c5e1d7bc18a705a7e79887",
+        "android_client_info": {
+          "package_name": "com.example.planningevent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263746572038-nt5g8us7joi89ersmtphuoolejdaf6s6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDI1QmRc015jMgHxN3HLcuTRMcsnhAyxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263746572038-nt5g8us7joi89ersmtphuoolejdaf6s6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -25,9 +25,7 @@ public class TestSwipe extends AppCompatActivity {
 
     private SwipeLayout sl;
     List<Evenement> myEvents = new ArrayList<>();
-
     DatabaseHandler db = new DatabaseHandler(this);
-    MyAdapter adapter = new MyAdapter(this,myEvents);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +53,11 @@ public class TestSwipe extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Delete",Toast.LENGTH_LONG).show();
                 Intent MainActivityIntent = new Intent(TestSwipe.this, MainActivity.class);
                 startActivity(MainActivityIntent);
-
-                /*
+/*
                 Evenement event_to_delete = adapter.mdata.get();
                 db.deleteEvent(event_to_delete);
                 myEvents.remove(event_to_delete);
-                adapter.notifyDataSetChanged();
-                */
+                adapter.notifyDataSetChanged();*/
             }
         });
 

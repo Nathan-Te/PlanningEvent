@@ -96,54 +96,18 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="From"
+        android:text="Date"
         android:textColor="#1E90FF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputEventName" />
 
-    <TextView
-        android:id="@+id/textTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="To"
-        android:textColor="#1E90FF"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textInputDateBegin"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEventName" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputDateEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="400dp"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddEvent2"
-        app:layout_constraintStart_toEndOf="@+id/textTo"
-        app:layout_constraintTop_toBottomOf="@id/textInputEventName">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputDateTo"
-            android:layout_width="102dp"
-            android:layout_height="49dp"
-            android:fontFamily="sans-serif-condensed"
-            android:hint="Select date"
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#1E90FF"
-            android:textColorLink="#1E90FF" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="76dp"
         android:background="@android:drawable/editbox_background"
         android:drawableLeft="@drawable/ic_baseline_place_24"
         android:drawablePadding="16sp"
@@ -177,5 +141,18 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/edit_text" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edit_text"
+        android:textAlignment="center"
+        android:theme="@style/AppTheme.Picker"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
