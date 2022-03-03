@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -117,10 +118,9 @@ public class EventAdder extends AppCompatActivity {
             public void onClick(View v) {
                 // Initialize Validation style
                 // validation = new AwesomeValidation(ValidationStyle.BASIC);
-
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
-                DatabaseReference myRef = database.getReference("users");
-                Evenement eventPerso = new Evenement("Nathan");
+                DatabaseReference myRef = database.getReference("events");
+                Evenement eventPerso = new Evenement("Birthday");
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 
                 eventName = findViewById(R.id.inputEventName);

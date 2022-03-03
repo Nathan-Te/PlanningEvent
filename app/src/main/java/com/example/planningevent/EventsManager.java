@@ -14,36 +14,70 @@ import android.view.View;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.planningevent.Evenement;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class EventsManager extends Activity {
 
     RecyclerView rv;
     List<Evenement> myEvents = new ArrayList<>();
     MyAdapter adapter;
+    Evenement data_ev;
 
+    public Evenement getData(){
+        return this.data_ev;
+    }
 
-    DatabaseHandler db = new DatabaseHandler(this);
+    public void setData(Evenement s){
+        this.data_ev = s;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_manager);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference("events");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String event_name = String.valueOf(ds.child("/name").getValue());
+                    Evenement temp_event = new Evenement(event_name);
+                    Log.w("TEST INFO : ", event_name);
+                    myEvents.add(temp_event);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
         rv = findViewById(R.id.rv);
         // Data
-        myEvents = db.getAllEvents();
-        myEvents.add(new Evenement("Blabla"));
+
+        Log.w("LIST : ", myEvents.toString());
 
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(this,myEvents);
         rv.setAdapter(adapter);
-       //  rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.VERTICAL));
+       // rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.VERTICAL));
 
        // new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rv);
 
