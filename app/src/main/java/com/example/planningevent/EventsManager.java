@@ -34,6 +34,7 @@ public class EventsManager extends Activity {
     List<Evenement> myEvents = new ArrayList<>();
     MyAdapter adapter;
     Evenement data_ev;
+    EventsManager objet = this;
 
     public Evenement getData(){
         return this.data_ev;
@@ -51,17 +52,25 @@ public class EventsManager extends Activity {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("events");
 
+        rv = findViewById(R.id.rv);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                myEvents.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String event_name = String.valueOf(ds.child("/name").getValue());
-                    Evenement temp_event = new Evenement(event_name);
                     Log.w("TEST INFO : ", event_name);
-                    myEvents.add(temp_event);
+                    setData(new Evenement(event_name));
+                    myEvents.add(getData());
+                    Log.w("LISTE TEMP :", myEvents.toString());
                 }
+                adapter = new MyAdapter(objet,myEvents);
+                rv.setAdapter(adapter);
+
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -69,14 +78,15 @@ public class EventsManager extends Activity {
             }
         });
 
-        rv = findViewById(R.id.rv);
         // Data
-
         Log.w("LIST : ", myEvents.toString());
-
+        /*
+        rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(this,myEvents);
         rv.setAdapter(adapter);
+        */
+
        // rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.VERTICAL));
 
        // new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rv);
