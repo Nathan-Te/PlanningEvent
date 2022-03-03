@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,13 +31,13 @@ import java.util.List;
 public class EventAdder extends AppCompatActivity {
 
     // Initialize variables
-    EditText dateEvent;
+    EditText dateFrom;
+    EditText dateTo;
     EditText editText;
     TextView textView1, textView2;
     TextInputEditText eventName;
     DatePickerDialog.OnDateSetListener setListenerDateFrom, setListenerDateTo;
-
-    NumberPicker numberPicker;
+    // AwesomeValidation validation;
 
     Evenement event;
     DatabaseHandler db = new DatabaseHandler(this);
@@ -49,29 +48,20 @@ public class EventAdder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_adder);
 
-        numberPicker = findViewById(R.id.numberPicker);
-        numberPicker.setMinValue(0);
-        numberPicker.setMaxValue(100);
 
-
-        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-                // Si on veut un affichage particulier quand la valeur change
-            }
-        });
 
         /*
             CALENDARS
          */
-        dateEvent = findViewById(R.id.inputDateFrom);
+        dateFrom = findViewById(R.id.inputDateFrom);
+        dateTo = findViewById(R.id.inputDateTo);
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        dateEvent.setOnClickListener(new View.OnClickListener() {
+        dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -80,7 +70,7 @@ public class EventAdder extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month+1;
                         String date = day+"/"+month+"/"+year;
-                        dateEvent.setText(date);
+                        dateFrom.setText(date);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -95,35 +85,56 @@ public class EventAdder extends AppCompatActivity {
             }
         };
 
+        dateTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        EventAdder.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        month = month+1;
+                        String date = day+"/"+month+"/"+year;
+                        dateTo.setText(date);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+        setListenerDateTo = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month+1;
+                String date = day + "/" + month + "/" + year;
+            }
+        };
+
         /*
             BUTTON TO ADD THE NEW EVENT
          */
         FloatingActionButton btnAddEvent2 = (FloatingActionButton) findViewById(R.id.btnAddEvent2);
         btnAddEvent2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // Initialize Validation style
+                // validation = new AwesomeValidation(ValidationStyle.BASIC);
+
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRef = database.getReference("users");
                 Evenement eventPerso = new Evenement("Nathan");
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 
-                // Number of guests
-                Integer nbGuests = numberPicker.getValue();
-                Toast.makeText(getApplicationContext(),nbGuests, Toast.LENGTH_SHORT).show();
-
-
                 eventName = findViewById(R.id.inputEventName);
+                // validation.addValidation(EventAdder.this,R.id.inputEventName,RegexTemplate.NOT_EMPTY,R.string.invalid_event_name);
 
                 Intent EventsManagerIntent = new Intent(EventAdder.this, EventsManager.class);
                 startActivity(EventsManagerIntent);
             }
         });
 
-
-
         /*
             ENTER THE ADDRESS
          */
-/*
+
         // Assign variable
         editText = findViewById(R.id.edit_text);
         textView1 = findViewById(R.id.text_view1);
@@ -167,7 +178,5 @@ public class EventAdder extends AppCompatActivity {
             // Display toast
             Toast.makeText(getApplicationContext(),status.getStatusMessage(), Toast.LENGTH_SHORT).show();
         }
-
-        */
     }
 }
