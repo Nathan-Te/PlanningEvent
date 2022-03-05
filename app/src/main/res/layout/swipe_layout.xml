@@ -22,16 +22,16 @@
             android:background="#1E90FF"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:id="@+id/ara"/>
+            android:id="@+id/img_consult"/>
 
         <ImageView
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_star_white_24dp"
+            android:src="@drawable/ic_baseline_star_border_24"
             android:background="#FFFFEB3B"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:id="@+id/star"/>
+            android:id="@+id/img_star"/>
 
         <ImageView
             android:layout_width="70dp"
@@ -40,7 +40,7 @@
             android:background="@color/red"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:id="@+id/delete2"/>
+            android:id="@+id/img_delete"/>
 
     </LinearLayout>
     <TextView
@@ -52,6 +52,5 @@
         android:textSize="20dp"
         android:textColor="#000"
         android:id="@+id/eventName"/>
-
 
 </com.daimajia.swipe.SwipeLayout>

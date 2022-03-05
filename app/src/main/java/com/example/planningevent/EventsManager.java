@@ -1,27 +1,15 @@
 package com.example.planningevent;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-import android.os.Bundle;
 import android.util.Log;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.planningevent.Evenement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,7 +58,6 @@ public class EventsManager extends Activity {
                 }
                 adapter = new MyAdapter(objet,myEvents);
                 rv.setAdapter(adapter);
-
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -88,7 +75,6 @@ public class EventsManager extends Activity {
         */
 
        // rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.VERTICAL));
-
        // new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rv);
 
         // Back home
@@ -113,8 +99,9 @@ public class EventsManager extends Activity {
         FloatingActionButton btnDelete = (FloatingActionButton) findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent TestSwipeIntent = new Intent(EventsManager.this, TestSwipe.class);
-                startActivity(TestSwipeIntent);
+                /**
+                 * This button has no interest.
+                 */
             }
         });
 

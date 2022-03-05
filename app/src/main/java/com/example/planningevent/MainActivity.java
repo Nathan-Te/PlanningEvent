@@ -2,12 +2,9 @@ package com.example.planningevent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.util.Log;
 import android.widget.Button;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.example.planningevent.ui.login.LoginActivity;
 
@@ -34,6 +31,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

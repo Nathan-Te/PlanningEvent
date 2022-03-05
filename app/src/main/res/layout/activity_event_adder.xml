@@ -45,10 +45,11 @@
         android:id="@+id/textInputEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="400dp"
+        android:gravity="center"
         android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnAddEvent2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,42 +60,21 @@
             android:id="@+id/inputEventName"
             android:layout_width="318dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="#1A1A1A"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
             android:hint="Enter event name"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#1E90FF"
-            android:textColorLink="#1E90FF" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputDateBegin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="400dp"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddEvent2"
-        app:layout_constraintStart_toEndOf="@+id/textFrom"
-        app:layout_constraintTop_toBottomOf="@id/textInputEventName">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputDateFrom"
-            android:layout_width="102dp"
-            android:layout_height="49dp"
-            android:fontFamily="sans-serif-condensed"
-            android:hint="Select date"
             android:textColor="#FFFFFF"
             android:textColorHighlight="#1E90FF"
             android:textColorLink="#1E90FF" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textFrom"
+        android:id="@+id/textDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Date"
         android:textColor="#1E90FF"
@@ -102,57 +82,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputEventName" />
 
-    <EditText
-        android:id="@+id/edit_text"
+    <Button
+        android:id="@+id/btnDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="76dp"
-        android:background="@android:drawable/editbox_background"
-        android:drawableLeft="@drawable/ic_baseline_place_24"
-        android:drawablePadding="16sp"
-        android:gravity="center_vertical"
-        android:hint="Enter address"
-        android:padding="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textFrom" />
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="49dp"
+        android:backgroundTint="#1E90FF"
+        android:text="Select date"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textDate"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEventName" />
 
     <TextView
-        android:id="@+id/text_view1"
+        android:id="@+id/textNbGuests"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="45dp"
         android:layout_marginTop="80dp"
-        android:fontFamily="monospace"
-        android:padding="12dp"
-        android:textColor="@color/purple_200"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Number of participants"
+        android:textColor="#1E90FF"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edit_text" />
-
-    <TextView
-        android:id="@+id/text_view2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:padding="12dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edit_text" />
+        app:layout_constraintTop_toBottomOf="@id/textTime" />
 
     <NumberPicker
         android:id="@+id/numberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edit_text"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="80dp"
         android:textAlignment="center"
         android:theme="@style/AppTheme.Picker"
-        />
+        app:layout_constraintStart_toStartOf="@id/textNbGuests"
+        app:layout_constraintTop_toBottomOf="@id/btnDate" />
 
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Time"
+        android:textColor="#1E90FF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textDate" />
+
+    <Button
+        android:id="@+id/timeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="#1E90FF"
+        android:onClick="popTimePicker"
+        android:text="Select time"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textTime"
+        app:layout_constraintTop_toBottomOf="@id/btnDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
