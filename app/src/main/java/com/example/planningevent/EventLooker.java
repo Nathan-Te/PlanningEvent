@@ -1,6 +1,5 @@
 package com.example.planningevent;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -10,18 +9,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.Locale;
 
-public class EventAdder extends AppCompatActivity {
+public class EventLooker extends AppCompatActivity {
 
     TextInputLayout eventName;
     DatePickerDialog.OnDateSetListener setListenerDateFrom;
@@ -33,7 +38,7 @@ public class EventAdder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_adder);
+        setContentView(R.layout.activity_event_looker);
 
         /*
             Time
@@ -62,7 +67,7 @@ public class EventAdder extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        EventAdder.this, new DatePickerDialog.OnDateSetListener() {
+                        EventLooker.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month + 1;
@@ -99,10 +104,50 @@ public class EventAdder extends AppCompatActivity {
 
 
 
-                Intent EventsManagerIntent = new Intent(EventAdder.this, EventsManager.class);
+                Intent EventsManagerIntent = new Intent(EventLooker.this, EventsManager.class);
                 startActivity(EventsManagerIntent);
             }
         });
+
+        // Getting extra infos from the Adapter
+        Intent intent = getIntent();
+        if (intent != null){
+
+            if(intent.hasExtra("eventname")){
+                FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
+                DatabaseReference myRef = database.getReference("events");
+
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                            if(intent.getStringExtra("eventname").equals(String.valueOf(ds.child("/name").getValue()))){
+                                String event_name = String.valueOf(ds.child("/name").getValue());
+                                long hour = (long) ds.child("/hour").getValue();
+                                long minute = (long) ds.child("/minute").getValue();
+                                long nb_people = (long) ds.child("/nb_people").getValue();
+                                String date = String.valueOf(ds.child("/date").getValue());
+                                TextInputEditText aff = findViewById(R.id.inputEventName);;
+                                aff.setText(event_name);
+                                timeButton.setText(String.valueOf(hour)+":"+String.valueOf(minute));
+                                dateButton.setText(date);
+                                nbParticipantsPicker.setValue(Integer.parseInt(String.valueOf(nb_people)));
+                                TextView title = findViewById(R.id.myNewEventTitle);
+                                title.setText(event_name);
+                                Log.w("RECUPERATION DES DATA : ", "DONE");
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                    }
+                });
+
+            }
+        }
     }
 
     /**

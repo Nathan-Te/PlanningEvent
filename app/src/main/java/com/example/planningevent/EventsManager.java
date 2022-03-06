@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 public class EventsManager extends Activity {
 
     RecyclerView rv;
-    List<Evenement> myEvents = new ArrayList<>();
+    List<String> myEvents = new ArrayList<>();
     MyAdapter adapter;
     Evenement data_ev;
     EventsManager objet = this;
@@ -51,10 +51,7 @@ public class EventsManager extends Activity {
                 myEvents.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String event_name = String.valueOf(ds.child("/name").getValue());
-                    Log.w("TEST INFO : ", event_name);
-                    setData(new Evenement(event_name));
-                    myEvents.add(getData());
-                    Log.w("LISTE TEMP :", myEvents.toString());
+                    myEvents.add(event_name);
                 }
                 adapter = new MyAdapter(objet,myEvents);
                 rv.setAdapter(adapter);
@@ -66,7 +63,6 @@ public class EventsManager extends Activity {
         });
 
         // Data
-        Log.w("LIST : ", myEvents.toString());
         /*
         rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
