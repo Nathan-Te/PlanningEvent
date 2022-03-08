@@ -141,7 +141,6 @@ public class EventLooker extends AppCompatActivity {
                                 nbParticipantsPicker.setValue(Integer.parseInt(String.valueOf(nb_people)));
                                 TextView title = findViewById(R.id.myNewEventTitle);
                                 title.setText(event_name);
-                                Log.w("RECUPERATION DES DATA : ", "DONE");
                             }
                         }
                     }

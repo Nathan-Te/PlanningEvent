@@ -9,6 +9,7 @@ public class Evenement {
     private int minute;
     private int nb_people;
     private String date;
+    private boolean favorite;
 
     public Evenement(String name, int hour, int minute, int nb_people, String date) {
         this.name = name;
@@ -18,6 +19,7 @@ public class Evenement {
         this.date = date;
         this.id = this.cpt_id;
         this.cpt_id += 1;
+        this.favorite = false;
     }
 
     public static int getCpt_id() {
@@ -80,6 +82,23 @@ public class Evenement {
         this.date = date;
     }
 
+    public void swapFavorite(){
+        if (this.favorite == false){
+            this.favorite = true;
+        }
+        else{
+            this.favorite = false;
+        }
+    }
+
+    public void addFavorite(){
+        this.favorite = true;
+    }
+
+    public void delFavorite(){
+        this.favorite = false;
+    }
+
     @Override
     public String toString() {
         return "Evenement{" +
@@ -90,5 +109,13 @@ public class Evenement {
                 ", nb_people=" + nb_people +
                 ", date='" + date + '\'' +
                 '}';
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

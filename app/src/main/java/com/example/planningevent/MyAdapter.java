@@ -25,6 +25,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context c;
     List<String> mdata;
     private DatabaseReference myRef;
+    private DatabaseReference myRef2;
+    Evenement eventPerso;
 
     public MyAdapter(Context c, List<String> mdata) {
         this.c = c;
@@ -114,14 +116,53 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         Evenement eventPerso = new Evenement("Concert");
                         myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
                     */
-                    if(favorite.equals(Boolean.TRUE)){
-                        favorite = Boolean.FALSE ;
-                        img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_baseline_star_border_24));
-                    }
-                    else {
-                        favorite = Boolean.TRUE;
-                        img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_star_white_24dp));
-                    }
+                    TextView txtView = itemView.findViewById(R.id.eventName);
+
+
+                    myRef2 = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("events");
+
+                    myRef2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // This method is called once with the initial value and again
+                            // whenever data at this location is updated.
+                            for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                if(txtView.getText().toString().trim().equals(String.valueOf(ds.child("/name").getValue()))){
+                                    String event_name = String.valueOf(ds.child("/name").getValue());
+                                    long id = (long) ds.child("/id").getValue();
+                                    long hour = (long) ds.child("/hour").getValue();
+                                    long minute = (long) ds.child("/minute").getValue();
+                                    long nb_people = (long) ds.child("/nb_people").getValue();
+                                    String date = String.valueOf(ds.child("/date").getValue());
+
+                                    //Evenement eventPerso = new Evenement(event_name, (int) hour, (int) minute, (int) nb_people, date);
+                                    eventPerso.setName(event_name);
+                                    eventPerso.setHour((int) hour);
+                                    eventPerso.setMinute((int) minute);
+                                    eventPerso.setNb_people((int) nb_people);
+                                    eventPerso.setDate(date);
+                                    /* NE MARCHE PAS SI BDD VIDE */
+                                    eventPerso.setId((int) id);
+
+                                    if((boolean) ds.child("/favorite").getValue() == true){
+                                        eventPerso.delFavorite();
+                                        img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_baseline_star_border_24));
+                                    }
+                                    else{
+                                        eventPerso.addFavorite();
+                                        img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_star_white_24dp));
+                                    }
+                                    //myRef2.child(String.valueOf(id)).removeValue();
+                                    //myRef2.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
+                                }
+                            }
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            // Failed to read value
+                        }
+                    });
+                    myRef2.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
                 }
             });
         }

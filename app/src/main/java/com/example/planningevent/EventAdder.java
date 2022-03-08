@@ -120,8 +120,8 @@ public class EventAdder extends AppCompatActivity {
                 eventName = findViewById(R.id.textInputEventName);
 
                 Evenement eventPerso = new Evenement(eventName.getEditText().getText().toString().trim(), hour, minute, nbParticipantsPicker.getValue(), date);
+                /* NE MARCHE PAS SI BDD VIDE */
                 eventPerso.setId(Integer.parseInt(idEvent.getText().toString()));
-                Log.w("EVENT : ", eventPerso.toString());
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 
 
