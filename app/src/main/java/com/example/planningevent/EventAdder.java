@@ -10,19 +10,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.Locale;
 
 public class EventAdder extends AppCompatActivity {
 
+    TextView idEvent;
     TextInputLayout eventName;
     DatePickerDialog.OnDateSetListener setListenerDateFrom;
     NumberPicker nbParticipantsPicker;
@@ -34,6 +39,8 @@ public class EventAdder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_adder);
+
+        idEvent = findViewById(R.id.idEvent2);
 
         /*
             Time
@@ -82,6 +89,24 @@ public class EventAdder extends AppCompatActivity {
             }
         };
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference("events");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                        idEvent.setText(String.valueOf(Integer.parseInt(ds.child("/id").getValue().toString())+1));
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
         /*
             BUTTON TO ADD THE NEW EVENT
          */
@@ -95,12 +120,14 @@ public class EventAdder extends AppCompatActivity {
                 eventName = findViewById(R.id.textInputEventName);
 
                 Evenement eventPerso = new Evenement(eventName.getEditText().getText().toString().trim(), hour, minute, nbParticipantsPicker.getValue(), date);
+                eventPerso.setId(Integer.parseInt(idEvent.getText().toString()));
+                Log.w("EVENT : ", eventPerso.toString());
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 
 
 
                 Intent EventsManagerIntent = new Intent(EventAdder.this, EventsManager.class);
-                startActivity(EventsManagerIntent);
+                startActivity(EventsManagerIntent)  ;
             }
         });
     }

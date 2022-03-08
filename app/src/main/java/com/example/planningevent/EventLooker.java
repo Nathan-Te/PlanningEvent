@@ -34,11 +34,14 @@ public class EventLooker extends AppCompatActivity {
     Button timeButton, dateButton;
     int hour, minute;
     String date;
+    TextView idEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_looker);
+
+        idEvent = findViewById(R.id.idEvent);
 
         /*
             Time
@@ -100,6 +103,7 @@ public class EventLooker extends AppCompatActivity {
                 eventName = findViewById(R.id.textInputEventName);
 
                 Evenement eventPerso = new Evenement(eventName.getEditText().getText().toString().trim(), hour, minute, nbParticipantsPicker.getValue(), date);
+                eventPerso.setId(Integer.parseInt(idEvent.getText().toString()));
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 
 
@@ -128,6 +132,7 @@ public class EventLooker extends AppCompatActivity {
                                 long hour = (long) ds.child("/hour").getValue();
                                 long minute = (long) ds.child("/minute").getValue();
                                 long nb_people = (long) ds.child("/nb_people").getValue();
+                                idEvent.setText(String.valueOf(ds.child("/id").getValue()));
                                 String date = String.valueOf(ds.child("/date").getValue());
                                 TextInputEditText aff = findViewById(R.id.inputEventName);;
                                 aff.setText(event_name);

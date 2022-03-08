@@ -79,4 +79,16 @@ public class Evenement {
     public void setDate(String date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Evenement{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", hour=" + hour +
+                ", minute=" + minute +
+                ", nb_people=" + nb_people +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

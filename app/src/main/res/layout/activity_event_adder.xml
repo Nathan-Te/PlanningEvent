@@ -144,4 +144,13 @@
         app:layout_constraintStart_toEndOf="@+id/textTime"
         app:layout_constraintTop_toBottomOf="@id/btnDate" />
 
+    <TextView
+        android:id="@+id/idEvent2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id"
+        android:textColor="#1A1A1A"
+        tools:layout_editor_absoluteX="345dp"
+        tools:layout_editor_absoluteY="22dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
