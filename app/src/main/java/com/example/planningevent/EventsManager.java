@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 public class EventsManager extends Activity {
 
     RecyclerView rv;
-    List<String> myEvents = new ArrayList<>();
+    List<Evenement> myEvents = new ArrayList<>();
     MyAdapter adapter;
     Evenement data_ev;
     EventsManager objet = this;
@@ -51,7 +51,16 @@ public class EventsManager extends Activity {
                 myEvents.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     String event_name = String.valueOf(ds.child("/name").getValue());
-                    myEvents.add(event_name);
+                    String date = String.valueOf(ds.child("/date").getValue());
+                    long hour = (long) ds.child("/hour").getValue();
+                    long minute = (long) ds.child("/minute").getValue();
+                    long nb_people = (long) ds.child("/nb_people").getValue();
+                    long id = (long) ds.child("/id").getValue();
+
+                    Evenement event = new  Evenement(event_name,(int) hour, (int) minute, (int) nb_people, date);
+                    event.setId((int) id);
+
+                    myEvents.add(event);
                 }
                 adapter = new MyAdapter(objet,myEvents);
                 rv.setAdapter(adapter);
@@ -61,17 +70,6 @@ public class EventsManager extends Activity {
                 // Failed to read value
             }
         });
-
-        // Data
-        /*
-        rv = findViewById(R.id.rv);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyAdapter(this,myEvents);
-        rv.setAdapter(adapter);
-        */
-
-       // rv.addItemDecoration(new DividerItemDecoration(rv.getContext(), DividerItemDecoration.VERTICAL));
-       // new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rv);
 
         // Back home
         FloatingActionButton btnHome = (FloatingActionButton) findViewById(R.id.btnHome);
@@ -99,25 +97,5 @@ public class EventsManager extends Activity {
                 startActivity(EventAdderIntent);
             }
         });
-
     }
-
-    /*
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
-
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            Evenement event_to_delete = adapter.mdata.get(viewHolder.getAdapterPosition());
-            Log.e("To Delete : ", event_to_delete.toString());
-            db.deleteEvent(event_to_delete);
-            myEvents.remove(event_to_delete);
-            adapter.notifyDataSetChanged();
-        }
-
-    };*/
 }

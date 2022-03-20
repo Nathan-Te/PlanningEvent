@@ -1,56 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipeLayout"
-    android:orientation="vertical"
     android:background="#FFF"
+    android:orientation="vertical"
     app:clickToClose="true">
 
     <LinearLayout
+        android:id="@+id/linear_sag"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/linear_sag"
         android:orientation="horizontal"
         android:weightSum="1">
 
         <ImageView
+            android:id="@+id/img_consult"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_search_white_24dp"
             android:background="#1E90FF"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:id="@+id/img_consult"/>
+            android:src="@drawable/ic_search_white_24dp" />
 
         <ImageView
+            android:id="@+id/img_star"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_star_border_24"
             android:background="#FFFFEB3B"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:id="@+id/img_star"/>
+            android:src="@drawable/ic_baseline_star_border_24" />
 
         <ImageView
+            android:id="@+id/img_delete"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_delete_white_24dp"
             android:background="@color/red"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
-            android:id="@+id/img_delete"/>
+            android:src="@drawable/ic_delete_white_24dp" />
 
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linear_sad"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="My name event"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textColor="#000"
-        android:id="@+id/eventName"/>
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/eventName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="150dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="My name event"
+            android:textColor="#000"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_chevron"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="330dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_chevron_left_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </com.daimajia.swipe.SwipeLayout>

@@ -124,10 +124,8 @@ public class EventAdder extends AppCompatActivity {
                 eventPerso.setId(Integer.parseInt(idEvent.getText().toString()));
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 
-
-
                 Intent EventsManagerIntent = new Intent(EventAdder.this, EventsManager.class);
-                startActivity(EventsManagerIntent)  ;
+                startActivity(EventsManagerIntent);
             }
         });
     }

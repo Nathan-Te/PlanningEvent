@@ -21,7 +21,7 @@ import java.util.List;
 public class EventsFavorite extends Activity {
 
     RecyclerView rv;
-    List<String> myEvents = new ArrayList<>();
+    List<Evenement> myEvents = new ArrayList<>();
     MyAdapter adapter;
     Evenement data_ev;
     EventsFavorite objet = this;
@@ -37,15 +37,13 @@ public class EventsFavorite extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events_manager);
+        setContentView(R.layout.activity_favorites);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("events");
 
         rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
-
-
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -56,7 +54,16 @@ public class EventsFavorite extends Activity {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     if((boolean) ds.child("/favorite").getValue() == true){
                         String event_name = String.valueOf(ds.child("/name").getValue());
-                        myEvents.add(event_name);
+                        String date = String.valueOf(ds.child("/date").getValue());
+                        long hour = (long) ds.child("/hour").getValue();
+                        long minute = (long) ds.child("/minute").getValue();
+                        long nb_people = (long) ds.child("/nb_people").getValue();
+                        long id = (long) ds.child("/id").getValue();
+
+                        Evenement event = new  Evenement(event_name,(int) hour, (int) minute, (int) nb_people, date);
+                        event.setId((int) id);
+
+                        myEvents.add(event);
                     }
                 }
                 adapter = new MyAdapter(objet,myEvents);
@@ -108,23 +115,4 @@ public class EventsFavorite extends Activity {
         });
 
     }
-
-    /*
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
-
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            Evenement event_to_delete = adapter.mdata.get(viewHolder.getAdapterPosition());
-            Log.e("To Delete : ", event_to_delete.toString());
-            db.deleteEvent(event_to_delete);
-            myEvents.remove(event_to_delete);
-            adapter.notifyDataSetChanged();
-        }
-
-    };*/
 }

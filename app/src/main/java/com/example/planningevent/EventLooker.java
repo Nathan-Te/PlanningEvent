@@ -106,8 +106,6 @@ public class EventLooker extends AppCompatActivity {
                 eventPerso.setId(Integer.parseInt(idEvent.getText().toString()));
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 
-
-
                 Intent EventsManagerIntent = new Intent(EventLooker.this, EventsManager.class);
                 startActivity(EventsManagerIntent);
             }

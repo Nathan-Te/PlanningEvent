@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,40 +22,36 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context c;
-    List<String> mdata;
+    List<Evenement> mData;
     private DatabaseReference myRef;
     private DatabaseReference myRef2;
-    Evenement eventPerso;
 
-    public MyAdapter(Context c, List<String> mdata) {
+    public MyAdapter(Context c, List<Evenement> mData) {
         this.c = c;
-        this.mdata = mdata;
+        this.mData = mData;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Ancienne version :
-        // View view = LayoutInflater.from(c).inflate(R.layout.list_item, parent, false);
         View view = LayoutInflater.from(c).inflate(R.layout.activity_test_swipe, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.aff.setText(mdata.get(position));
+        holder.aff.setText(mData.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return mdata.size();
+        return mData.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextInputLayout eventName;
         TextView aff;
         ImageView img_delete, img_consult, img_star;
-        Boolean favorite = Boolean.FALSE;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,17 +60,38 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             img_delete = itemView.findViewById(R.id.img_delete);
             img_star = itemView.findViewById(R.id.img_star);
             img_consult = itemView.findViewById(R.id.img_consult);
+            TextView txtView = itemView.findViewById(R.id.eventName);
+
+            DatabaseReference myRef3 = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("events");
+            myRef3.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                        if(txtView.getText().toString().trim().equals(String.valueOf(ds.child("/name").getValue()))){
+                            boolean favorite = (boolean) ds.child("/favorite").getValue();
+                            if(favorite){
+                                img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_star_white_24dp));
+                            }
+                            else{
+                                img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_baseline_star_border_24));
+                            }
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                }
+            });
 
             img_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     TextView txtView = itemView.findViewById(R.id.eventName);
 
-                    /**
-                     * Delete here
-                     */
                     myRef = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("events");
-
                     myRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -109,51 +125,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             img_star.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*
-                        JUSTE POUR TESTER
-                        FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
-                        DatabaseReference myRef = database.getReference("events");
-                        Evenement eventPerso = new Evenement("Concert");
-                        myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
-                    */
                     TextView txtView = itemView.findViewById(R.id.eventName);
 
-
                     myRef2 = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("events");
-
-                    myRef2.addValueEventListener(new ValueEventListener() {
+                    myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             // This method is called once with the initial value and again
                             // whenever data at this location is updated.
                             for(DataSnapshot ds : dataSnapshot.getChildren()) {
                                 if(txtView.getText().toString().trim().equals(String.valueOf(ds.child("/name").getValue()))){
+
                                     String event_name = String.valueOf(ds.child("/name").getValue());
                                     long id = (long) ds.child("/id").getValue();
                                     long hour = (long) ds.child("/hour").getValue();
                                     long minute = (long) ds.child("/minute").getValue();
                                     long nb_people = (long) ds.child("/nb_people").getValue();
                                     String date = String.valueOf(ds.child("/date").getValue());
+                                    boolean favorite = (boolean) ds.child("/favorite").getValue();
 
-                                    //Evenement eventPerso = new Evenement(event_name, (int) hour, (int) minute, (int) nb_people, date);
-                                    eventPerso.setName(event_name);
-                                    eventPerso.setHour((int) hour);
-                                    eventPerso.setMinute((int) minute);
-                                    eventPerso.setNb_people((int) nb_people);
-                                    eventPerso.setDate(date);
-                                    /* NE MARCHE PAS SI BDD VIDE */
-                                    eventPerso.setId((int) id);
+                                    Evenement event = new Evenement(event_name, (int) hour, (int) minute, (int) nb_people, date);
+                                    event.setFavorite(favorite);
+                                    event.swapFavorite();
+                                    event.setName(event_name);
+                                    event.setHour((int) hour);
+                                    event.setMinute((int) minute);
+                                    event.setNb_people((int) nb_people);
+                                    event.setDate(date);
+                                    event.setId((int) id);
 
-                                    if((boolean) ds.child("/favorite").getValue() == true){
-                                        eventPerso.delFavorite();
-                                        img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_baseline_star_border_24));
-                                    }
-                                    else{
-                                        eventPerso.addFavorite();
-                                        img_star.setImageDrawable(img_star.getResources().getDrawable(R.drawable.ic_star_white_24dp));
-                                    }
-                                    //myRef2.child(String.valueOf(id)).removeValue();
-                                    //myRef2.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
+                                    myRef2.child(String.valueOf(event.getId())).setValue(event);
                                 }
                             }
                         }
@@ -162,7 +163,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                             // Failed to read value
                         }
                     });
-                    myRef2.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
                 }
             });
         }
