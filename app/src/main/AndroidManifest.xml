@@ -29,9 +29,6 @@
             android:name=".EventsManager"
             android:exported="false" />
         <activity
-            android:name=".EventsFavorite"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
