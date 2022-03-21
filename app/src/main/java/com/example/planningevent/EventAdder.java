@@ -53,7 +53,6 @@ public class EventAdder extends AppCompatActivity {
         nbParticipantsPicker = findViewById(R.id.numberPicker);
         nbParticipantsPicker.setMinValue(0);
         nbParticipantsPicker.setMaxValue(100);
-        // Note pour récupérer valeur : nbParticipantsPicker.getValue();
 
         /*
             Date

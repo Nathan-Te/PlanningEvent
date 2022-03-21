@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.daimajia.swipe.SwipeLayout;
 
-public class TestSwipe extends AppCompatActivity {
+public class ItemSwipe extends AppCompatActivity {
 
     private SwipeLayout sl;
 
@@ -12,7 +12,7 @@ public class TestSwipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_swipe);
+        setContentView(R.layout.item);
 
         sl = findViewById(R.id.swipeLayout);
         sl.setShowMode(SwipeLayout.ShowMode.PullOut);

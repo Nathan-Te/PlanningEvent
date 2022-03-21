@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.1305" />
-        <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/layout/activity_events_manager.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/layout/activity_event_adder.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/layout/activity_event_looker.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/layout/activity_events_manager.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/layout/activity_favorites.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Mathilde MOTTAY/Desktop/Projet Android/PlanningEvent/app/src/main/res/layout/activity_my_events_manager.xml" value="0.12454710144927536" />

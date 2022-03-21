@@ -1,8 +1,8 @@
 package com.example.planningevent;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(c).inflate(R.layout.activity_test_swipe, parent, false);
+        View view = LayoutInflater.from(c).inflate(R.layout.item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -64,8 +64,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             DatabaseReference myRef3 = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("events");
             myRef3.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("UseCompatLoadingForDrawables")
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
                     for(DataSnapshot ds : dataSnapshot.getChildren()) {

@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanningEvent">
         <activity
-            android:name=".TestSwipe"
-            android:exported="false" />
-        <activity
-            android:name=".DataPickerExample"
+            android:name=".ItemSwipe"
             android:exported="false" />
         <activity
             android:name=".EventAdder"

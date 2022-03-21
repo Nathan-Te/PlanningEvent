@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -69,8 +68,7 @@ public class EventLooker extends AppCompatActivity {
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        EventLooker.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EventLooker.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month + 1;
@@ -93,10 +91,10 @@ public class EventLooker extends AppCompatActivity {
         /*
             BUTTON TO ADD THE NEW EVENT
          */
-        FloatingActionButton btnAddEvent2 = (FloatingActionButton) findViewById(R.id.btnAddEvent2);
-        btnAddEvent2.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton btnModifyEvent = (FloatingActionButton) findViewById(R.id.btnModifyEvent);
+        btnModifyEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Pour tester l'ajout dans la database
+
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://planning-event-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRef = database.getReference("events");
 
@@ -152,10 +150,6 @@ public class EventLooker extends AppCompatActivity {
         }
     }
 
-    /**
-     * popTimePicker
-     * @param view
-     */
     public void popTimePicker(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
