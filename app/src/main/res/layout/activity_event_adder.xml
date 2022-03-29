@@ -17,7 +17,7 @@
         android:text="My new event"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#1E90FF"
-        app:layout_constraintBottom_toTopOf="@id/btnAddEvent"
+        app:layout_constraintBottom_toTopOf="@id/btnAddEvent3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
