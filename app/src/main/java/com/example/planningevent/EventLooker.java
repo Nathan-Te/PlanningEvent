@@ -100,7 +100,7 @@ public class EventLooker extends AppCompatActivity {
 
                 eventName = findViewById(R.id.textInputEventName);
 
-                Evenement eventPerso = new Evenement(eventName.getEditText().getText().toString().trim(), hour, minute, nbParticipantsPicker.getValue(), date);
+                Evenement eventPerso = new Evenement(eventName.getEditText().getText().toString().trim(), Integer.parseInt(timeButton.getText().toString().split(":")[0]), Integer.parseInt(timeButton.getText().toString().split(":")[1]), nbParticipantsPicker.getValue(), (String) dateButton.getText());
                 eventPerso.setId(Integer.parseInt(idEvent.getText().toString()));
                 myRef.child(String.valueOf(eventPerso.getId())).setValue(eventPerso);
 

@@ -1,4 +1,6 @@
-package com.example.planningevent.ui.login;
+package com.example.planningevent;
+
+import com.example.planningevent.ui.login.*;
 
 import android.app.Activity;
 
@@ -28,11 +30,17 @@ import com.example.planningevent.EventsManager;
 import com.example.planningevent.LoadingScreenActivity;
 import com.example.planningevent.MainActivity;
 import com.example.planningevent.R;
+import com.example.planningevent.ui.login.LoggedInUserView;
+import com.example.planningevent.ui.login.LoginActivity;
+import com.example.planningevent.ui.login.LoginFormState;
+import com.example.planningevent.ui.login.LoginResult;
 import com.example.planningevent.ui.login.LoginViewModel;
 import com.example.planningevent.ui.login.LoginViewModelFactory;
 import com.example.planningevent.databinding.ActivityLoginBinding;
+import android.os.Bundle;
+import android.widget.Button;
 
-public class LoginActivity extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
@@ -40,12 +48,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //setContentView(R.layout.activity_login);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        Button boutonLog = findViewById(R.id.login);
-        boutonLog.setText("LOG IN");
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
@@ -133,11 +138,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                //loginViewModel.login(usernameEditText.getText().toString(),
-                //        passwordEditText.getText().toString());
-                Intent LoadingScreenIntent = new Intent(LoginActivity.this, LoadingScreenActivity.class);
-                LoadingScreenIntent.putExtra("login", usernameEditText.getText().toString().trim());
-                LoadingScreenIntent.putExtra("password", passwordEditText.getText().toString().trim());
+                Intent LoadingScreenIntent = new Intent(Register.this, LoadingScreenActivity.class);
+                LoadingScreenIntent.putExtra("Registerlogin", usernameEditText.getText().toString().trim());
+                LoadingScreenIntent.putExtra("Registerpassword", passwordEditText.getText().toString().trim());
                 startActivity(LoadingScreenIntent);
             }
         });

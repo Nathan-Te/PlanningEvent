@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlanningEvent">
         <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".LoadingScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".ItemSwipe"
             android:exported="false" />
         <activity

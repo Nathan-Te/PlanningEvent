@@ -5,161 +5,300 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EventAdder"
-    android:background="#1A1A1A">
+    android:background="#1A1A1A" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="285dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="63dp"
+        android:background="@drawable/button_gradient_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myNewEventTitle">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEventName"
+            android:layout_width="267dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textColorHint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEventName"
+                android:layout_width="267dp"
+                android:layout_height="38dp"
+                android:backgroundTint="#1A1A1A"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:hint="Enter event name"
+                android:textColor="#FFFFFF"
+                android:textColorHighlight="#1E90FF"
+                android:textColorLink="#1E90FF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="147dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="77dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/button_gradient_grey"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <Button
+            android:id="@+id/btnDate"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/button_gradient"
+            android:backgroundTint="#1E90FF"
+            android:fontFamily="sans-serif-light"
+            android:text="Select date"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginBottom="35dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Date"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btnDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnDate"
+            app:layout_constraintEnd_toStartOf="@+id/textDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/calendar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/myNewEventTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="600dp"
+        android:layout_marginBottom="68dp"
         android:fontFamily="sans-serif-light"
         android:text="My new event"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#1E90FF"
-        app:layout_constraintBottom_toTopOf="@id/btnAddEvent3"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475"
         tools:ignore="NotSibling" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnModifyEvent"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="178dp"
-        android:layout_marginEnd="178dp"
-        android:layout_marginBottom="21dp"
-        android:background="#F44336"
-        android:backgroundTint="#1E90FF"
-        android:clickable="true"
-        app:backgroundTint="@color/white"
-        app:borderWidth="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_edit_24"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEventName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="400dp"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnModifyEvent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myNewEventTitle"
-        app:layout_constraintVertical_bias="0.363">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputEventName"
-            android:layout_width="318dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#1A1A1A"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:hint="Change event name"
-            android:textColor="#FFFFFF"
-            android:textColorHighlight="#1E90FF"
-            android:textColorLink="#1E90FF" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/textDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Date"
-        android:textColor="#1E90FF"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputEventName" />
-
-    <Button
-        android:id="@+id/btnDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="49dp"
-        android:backgroundTint="#1E90FF"
-        android:fontFamily="sans-serif-light"
-        android:text="Select date"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textDate"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEventName" />
-
-    <TextView
-        android:id="@+id/textNbGuests"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Number of participants"
-        android:textColor="#1E90FF"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textTime" />
-
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="236dp"
-        android:layout_marginTop="136dp"
-        android:fontFamily="sans-serif-light"
-        android:textAlignment="center"
-        android:theme="@style/AppTheme.Picker"
-        app:layout_constraintStart_toStartOf="@id/textNbGuests"
-        app:layout_constraintTop_toBottomOf="@id/btnDate" />
-
-    <TextView
-        android:id="@+id/textTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="128dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Time"
-        android:textColor="#1E90FF"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textDate" />
-
-    <Button
-        android:id="@+id/timeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
-        android:backgroundTint="#1E90FF"
-        android:fontFamily="sans-serif-light"
-        android:onClick="popTimePicker"
-        android:text="Select time"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textTime"
-        app:layout_constraintTop_toBottomOf="@id/btnDate" />
 
     <TextView
         android:id="@+id/idEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="55dp"
+        android:fontFamily="sans-serif-light"
         android:text="id"
         android:textColor="#1A1A1A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="147dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="77dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/button_gradient_grey"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:id="@+id/textTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="31dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Time"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/timeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/timeButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/clock" />
+
+        <Button
+            android:id="@+id/timeButton"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_gradient"
+            android:backgroundTint="#1E90FF"
+            android:fontFamily="sans-serif-light"
+            android:onClick="popTimePicker"
+            android:text="Select time"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="348dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/button_gradient_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        <NumberPicker
+            android:id="@+id/numberPicker"
+            android:layout_width="32dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:textAlignment="center"
+            android:theme="@style/AppTheme.Picker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textNbGuests"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textNbGuests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="36dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Number of participants"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/numberPicker"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="52dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textNbGuests"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/people" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="281dp"
+        android:layout_marginBottom="23dp"
+        android:text="Categories"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnModifyEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginBottom="48dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         final Button register = findViewById(R.id.button2);
         register.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent LoginActivityIntent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent LoginActivityIntent = new Intent(MainActivity.this, Register.class);
                 startActivity(LoginActivityIntent);
             }
         });
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         final Button login = findViewById(R.id.button);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent EventsManagerIntent = new Intent(MainActivity.this, EventsManager.class);
+                Intent EventsManagerIntent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(EventsManagerIntent);
             }
         });
